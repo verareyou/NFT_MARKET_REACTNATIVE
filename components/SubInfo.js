@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native";
 // import React from "react";
 import { SIZES, COLORS, SHADOWS, FONTS, assets } from "../constants";
 
-export const NFTTitile = ({ title, subTitle, titleSize, subTitleSize }) => {
+export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
   return (
     <View>
       <Text
