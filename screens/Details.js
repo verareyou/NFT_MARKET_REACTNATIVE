@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import React from "react";
 
+import { NFTData } from "../constants";
+
 import { COLORS, FONTS, icons, SIZES, assets, SHADOWS } from "../constants";
 import {
   CircleButton,
@@ -20,9 +22,7 @@ import {
 } from "../components";
 
 const DetailsHeader = ({ data, navigation }) => (
-  <View style={{ width: "100%", height: 373,
-    alignItems: "center",
-  }}>
+  <View style={{ width: "100%", height: 373, alignItems: "center" }}>
     <Image
       source={data.image}
       resizeMode="cover"
@@ -50,6 +50,7 @@ const DetailsHeader = ({ data, navigation }) => (
 const Details = ({ route, navigation }) => {
   // console.log(route);
   const { data } = route.params;
+  // const data = NFTData[3];
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusedStatusBar
@@ -77,10 +78,35 @@ const Details = ({ route, navigation }) => {
         contentContainerStyle={{
           paddingBottom: SIZES.extraLarge * 3,
         }}
-        renderItem={({ item }) => <DetailsBid bid={item.bid} />}
+        renderItem={({ item }) => <DetailsBid bid={item} />}
         ListHeaderComponent={
           <React.Fragment>
             <DetailsHeader data={data} navigation={navigation} />
+            <SubInfo />
+            <View style={{
+              padding: SIZES.font,
+            }}>
+              <DetailsDesc data={data} />
+
+              {data.bids.length > 0 && (
+                <Text
+                  style={{
+                    fontSize: SIZES.font,
+                    fontFamily: FONTS.medium,
+                    color: COLORS.primary,
+                  }}
+                >
+                  current bids 
+                  -{" "}
+                  <Text
+                   style={{
+                    color:"green",
+                    fontFamily: FONTS.semiBold,
+                   }}
+                  >{data.bids.length}</Text>
+                </Text>
+              )}
+            </View>
           </React.Fragment>
         }
       />

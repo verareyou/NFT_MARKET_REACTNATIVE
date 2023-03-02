@@ -5,7 +5,14 @@ import { COLORS, NFTData } from "../constants";
 import { NFTCard, FocusedStatusBar, HomeHeader } from "../components";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(NFTData);
+
+  const handleSearch = text => {
+    const filteredData = NFTData.filter(item => {
+      return item.name.toLowerCase().includes(text.toLowerCase());
+    });
+    setData(filteredData);
+  }
   return (
     <SafeAreaView
       style={{
@@ -16,11 +23,11 @@ const Home = () => {
       <View style={{ flex: 1, marginTop: 30 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
-            data={NFTData}
+            data={data}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => <NFTCard data={item} />}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<HomeHeader />}
+            ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
           />
         </View>
         <View
