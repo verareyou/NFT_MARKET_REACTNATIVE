@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
 import { CircleButton, RectButton } from "./Button";
 import {
-  NFTTitile,
+  NFTTitle,
   EthPrice,
   ImageCmp,
   People,
@@ -26,13 +26,21 @@ const NFTCard = ({ data }) => {
         // elevation: 5,
       }}
     >
-      <View style={{ width: "100%", height: 250 }}>
+      <View
+        style={{
+          width: "100%",
+          height: 250,
+          // alignContent: "center",
+          // justifyContent: "center",
+        }}
+      >
         <Image
           source={data.image}
           resizeMode="cover"
           style={{
             width: "100%",
             height: "100%",
+            // left: -1.75,
             borderTopLeftRadius: SIZES.font,
             borderTopRightRadius: SIZES.font,
             // borderBottomLeftRadius: SIZES.font,
@@ -44,7 +52,7 @@ const NFTCard = ({ data }) => {
       <SubInfo />
 
       <View style={{ width: "100%", padding: SIZES.font }}>
-        <NFTTitile
+        <NFTTitle
           title={data.name}
           subTitle={data.creator}
           titleSize={SIZES.large}
